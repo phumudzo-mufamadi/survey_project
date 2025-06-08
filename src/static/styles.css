@@ -1,0 +1,114 @@
+body {
+    padding: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem; 
+    list-style: none; 
+    padding: 0;
+    margin: 0
+}
+
+.nav-active-link {
+    color: lightskyblue;
+    text-decoration: none;
+}
+
+.nav-link {
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem; 
+}
+
+.personal-info {
+    display: flex;
+    align-items: flex-start;
+}
+
+.personal-info-header {
+    width: 200px;
+}
+
+.personal-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.personal-info-content label {
+    margin-bottom: 1px;
+}
+
+.personal-info-content input {
+    width: 200px;
+    max-width: 100%;
+    padding: 5px;
+    border: 1px solid lightskyblue;
+    border-radius: 4px;
+}
+
+.fav-food {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.survey-table {
+    border-collapse: collapse;
+    width: 60%;
+  }
+
+.survey-table th,td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 5px;
+  }
+
+.survey-table thead th {
+    background-color: #e0e0e0; 
+    color: #000; 
+  }
+
+.fav-food-content input[type="checkbox"] {
+    
+}
+
+.center-box {
+    display: flex;
+    justify-content: center; 
+     width: 60%;
+     margin: 20px;
+}
+
+.submit-btn {
+    background-color: lightskyblue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+   
+}
+
+.survey-results {
+    display: flex;
+   flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px auto;
+
+}
+
+.survey-results-item .row {
+   display: grid;
+   grid-template-columns: 400px 1fr;
+   margin-bottom: 5px;
+}
+

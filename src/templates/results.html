@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Survey Application - Results{% endblock %}
+{% block content %}
+<header>
+    <nav class="navbar">
+        <h1>_Surveys</h1>
+        <ul class="nav-links">
+            <li>
+                <a href="{{ url_for('survey') }}"
+                class="nav-link">
+                FILL OUT SURVEY
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('results') }}"
+                class="nav-active-link">
+                VIEW SURVEY RESULTS
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="survey-results">
+    <h2>Survey Results</h2>
+    <div class="survey-results-item">
+        <div class="row">
+            <div class="label">Total number of surveys:</div>
+            <div class="value">{{ total_surveys }}</div>
+        </div>
+        <div class="row">
+            <div class="label">Average Age:</div>
+            <div class="value">{{ average_age }}</div>
+        </div>
+         <div class="row">
+            <div class="label">Oldest people who participated in survey:</div>
+            <div class="value">{{ max_age }}</div>
+        </div>
+         <div class="row">
+            <div class="label">Youngest person who participated in survey:</div>
+            <div class="value">{{ min_age }}</div>
+        </div>
+        <br><br>
+         <div class="row">
+            <div class="label">Percentage of people who like Pizza:</div>
+            <div class="value">{{ pizza_pct }}%</div>
+        </div>
+         <div class="row">
+            <div class="label">Percentage of people who like Pasta:</div>
+            <div class="value">{{ pasta_pct }}%</div>
+        </div>
+        <div class="row">
+            <div class="label">Percentage of people who like Pap and Wors:</div>
+            <div class="value">{{ papwors_pct }}%</div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="label">People who like to watch movies:</div>
+            <div class="value">{{ avg_movies }}</div>
+        </div>
+        <div class="row">
+            <div class="label">People who like to listen to radio:</div>
+            <div class="value">{{ avg_radio }}</div>
+    </div>
+        <div class="row">
+            <div class="label">People who like to eat out:</div>
+            <div class="value">{{ avg_eatout }}</div>
+        </div>
+        <div class="row">
+            <div class="label">People who like to watch TV:</div>
+            <div class="value">{{ avg_watchtv }}</div>
+        </div>
+
+</div>
+</div>
+    
+{% endblock %}
