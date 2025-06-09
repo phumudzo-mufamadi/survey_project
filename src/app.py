@@ -1,5 +1,7 @@
 import os
 import datetime
+
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, flash, redirect, url_for
 from sqlalchemy import func, cast, Integer
 from models import db
@@ -7,6 +9,7 @@ from utils import calculate_age, save_response
 from models import SurveyParticipant, SurveyResponse
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
+load_dotenv()
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL',
