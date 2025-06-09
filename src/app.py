@@ -1,7 +1,7 @@
 import os
 import datetime
 from flask import Flask, render_template, request, flash, redirect, url_for
-from sqlalchemy import func
+from sqlalchemy import func, cast, Integer
 from models import db
 from utils import calculate_age, save_response
 from models import SurveyParticipant, SurveyResponse
@@ -66,13 +66,48 @@ def results():
     average_age = db.session.query(func.avg(SurveyParticipant.age)).scalar()
     max_age = db.session.query(func.max(SurveyParticipant.age)).scalar()
     min_age = db.session.query(func.min(SurveyParticipant.age)).scalar()
+    pizza_total = SurveyResponse.query.filter(
+        SurveyResponse.question=='favorite_food', SurveyResponse.answer=='Pizza').count()
+
+    pasta_total = SurveyResponse.query.filter(
+        SurveyResponse.question == 'favorite_food', SurveyResponse.answer == 'Pasta').count()
+
+    papwors_total = SurveyResponse.query.filter(
+        SurveyResponse.question == 'favorite_food', SurveyResponse.answer == 'Pap and Wors').count()
+
+    pizza_pct = pizza_total / total_surveys * 100
+    pasta_pct = pasta_total / total_surveys * 100
+    papwors_pct = papwors_total / total_surveys * 100
+
+    total_movies = (db.session.query(func.sum(cast(SurveyResponse.answer, Integer)))
+                    .filter(SurveyResponse.question=='watch_movies').scalar())
+    total_radio = (db.session.query(func.sum(cast(SurveyResponse.answer, Integer)))
+                    .filter(SurveyResponse.question == 'listen_radio').scalar())
+    total_eat_out = (db.session.query(func.sum(cast(SurveyResponse.answer, Integer)))
+                    .filter(SurveyResponse.question == 'eat_out').scalar())
+    total_watch_tv = (db.session.query(func.sum(cast(SurveyResponse.answer, Integer)))
+                    .filter(SurveyResponse.question == 'watch_tv').scalar())
+
+    avg_movies = total_movies / total_surveys
+    avg_radio = total_radio / total_surveys
+    avg_eatout = total_eat_out / total_surveys
+    avg_watchtv = total_watch_tv / total_surveys
+
     return render_template(
         'results.html',
         total_surveys=total_surveys,
         average_age=average_age,
         max_age=max_age,
         min_age=min_age,
+        pizza_pct=round(pizza_pct, 1),
+        pasta_pct=round(pasta_pct, 1),
+        papwors_pct=round(papwors_pct, 1),
+        avg_movies=round(avg_movies, 1),
+        avg_radio=round(avg_radio, 1),
+        avg_eatout=round(avg_eatout, 1),
+        avg_watchtv=round(avg_watchtv,1),
     )
+
 
 
 if __name__ == '__main__':
