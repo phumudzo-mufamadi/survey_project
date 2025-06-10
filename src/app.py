@@ -99,7 +99,7 @@ def results():
     return render_template(
         'results.html',
         total_surveys=total_surveys,
-        average_age=average_age,
+        average_age=round(average_age, 1),
         max_age=max_age,
         min_age=min_age,
         pizza_pct=round(pizza_pct, 1),
